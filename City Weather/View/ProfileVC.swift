@@ -24,8 +24,7 @@ class ProfileVC: UIViewController, MKLocalSearchCompleterDelegate, UISearchBarDe
     var searchResults = [MKLocalSearchCompletion]()
  
     private let viewModel = searchViewModel()
-    
-    var userViewModel: UserViewModel?
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,13 +60,15 @@ class ProfileVC: UIViewController, MKLocalSearchCompleterDelegate, UISearchBarDe
                 if let downloadURL = url {
                     
                     self.downloadImage(url: downloadURL, IMG: self.profileImageView)
-                    ActivityIndicatorManager.shared.hide()
+                  //  ActivityIndicatorManager.shared.hide()
                    
                 } else {
                    
                 }
             }
         }
+        
+        ActivityIndicatorManager.shared.hide()
 
     }
     

@@ -10,11 +10,10 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseFirestore
-
-import Foundation
 import UIKit
 
 class SignUpViewModel {
+    
     var email: String = ""
     var password: String = ""
     var username: String = ""
@@ -22,12 +21,9 @@ class SignUpViewModel {
     var selectedImage: UIImage?
     var userID: String = ""
     
-   
-    
-    
     func signUp(completion: @escaping (Result<String, Error>) -> Void) {
         
-        guard !email.isEmpty, !password.isEmpty, !username.isEmpty, !bio.isEmpty, let image = selectedImage else {
+        guard !email.isEmpty, !password.isEmpty, let image = selectedImage else {
 
             completion(.success(""))
 
