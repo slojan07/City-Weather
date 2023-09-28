@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "4CF79164-020B-49E1-9B2E-477ED112F029"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D2F39AEA-A0D0-4567-8543-A1D978F6836F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "City Weather/ProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "updateUI(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D2F39AEA-A0D0-4567-8543-A1D978F6836F - 5a053ffdbd08ac64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "City_Weather.ProfileVC.updateUI(with: City_Weather.UserProfile) -&gt; ()"
+                  moduleName = "City Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wiljans/Desktop/City%20Weather/City%20Weather/ProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "500">
+               </Location>
+               <Location
+                  uuid = "D2F39AEA-A0D0-4567-8543-A1D978F6836F - 5a053ffdbd08ac64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "City_Weather.ProfileVC.updateUI(with: City_Weather.UserProfile) -&gt; ()"
+                  moduleName = "City Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wiljans/Desktop/City%20Weather/City%20Weather/ProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "320">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C41710D-D0B5-42DE-A2EE-9E6773E0D8BD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "City Weather/ProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "updateUI(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5C41710D-D0B5-42DE-A2EE-9E6773E0D8BD - 5a053ffdbd08ac81"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "City_Weather.ProfileVC.updateUI(with: City_Weather.UserProfile) -&gt; ()"
+                  moduleName = "City Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wiljans/Desktop/City%20Weather/City%20Weather/ProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "5C41710D-D0B5-42DE-A2EE-9E6773E0D8BD - 5a053ffdbd08ac43"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "City_Weather.ProfileVC.updateUI(with: City_Weather.UserProfile) -&gt; ()"
+                  moduleName = "City Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wiljans/Desktop/City%20Weather/City%20Weather/ProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "196">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0DA705AC-3744-45A4-9479-B3DB3C8FA06A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "City Weather/ProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "fetchUserData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8925FAE4-F717-4CDC-9EEF-DDC06C1491B0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "City Weather/ProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "fetchUserData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CEDCBD06-2519-4498-8E41-07E99C906A96"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "City Weather/ProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "fetchUserData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B1979D21-E7A0-4BDE-B464-44302F8A4BB9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "City Weather/ProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "fetchUserData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B1979D21-E7A0-4BDE-B464-44302F8A4BB9 - a45823554c6c530a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "City_Weather.ProfileVC.fetchUserData() -&gt; ()"
+                  moduleName = "City Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wiljans/Desktop/City%20Weather/City%20Weather/ProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "B1979D21-E7A0-4BDE-B464-44302F8A4BB9 - a45823554c6c530a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "City_Weather.ProfileVC.fetchUserData() -&gt; ()"
+                  moduleName = "City Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wiljans/Desktop/City%20Weather/City%20Weather/ProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "284">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
