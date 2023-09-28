@@ -30,6 +30,16 @@ extension UIViewController {
     }
     
     
+    func hideKeyboardWhenTappedAround() {
+            let tapGesture = UITapGestureRecognizer(target: self,
+                             action: #selector(hideKeyboard))
+            view.addGestureRecognizer(tapGesture)
+        }
+
+        @objc func hideKeyboard() {
+            view.endEditing(true)
+        }
+    
     
 }
 
@@ -122,5 +132,15 @@ extension MKMapView {
             latitudinalMeters: regionRadius,
             longitudinalMeters: regionRadius)
         setRegion(coordinateRegion, animated: true)
+    }
+}
+
+extension UITextField {
+    func addBottomBorder(){
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0, y: self.frame.size.height - 1, width: self.frame.size.width, height: 1)
+        bottomLine.backgroundColor = UIColor.gray.cgColor
+        borderStyle = .none
+        layer.addSublayer(bottomLine)
     }
 }

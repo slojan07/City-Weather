@@ -18,7 +18,8 @@ class ProfileVC: UIViewController, MKLocalSearchCompleterDelegate, UISearchBarDe
     @IBOutlet weak var citiesTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var profileImageView: UIImageView!
-    
+    @IBOutlet weak var name_LBL: UILabel!
+    @IBOutlet weak var bio_Lbl: UILabel!
     
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
@@ -34,33 +35,59 @@ class ProfileVC: UIViewController, MKLocalSearchCompleterDelegate, UISearchBarDe
         citiesTableView.delegate = self
         citiesTableView.dataSource = self
         searchBar.text = viewModel.selectedCity
-        
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2
-        viewModel.fetchWeatherByCityName(colection: daily_Collection)
         
+        viewModel.fetchWeatherByCityName(colection: daily_Collection)
         fetchUserData()
+        
+       // hideKeyboardWhenTappedAround()
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.view.layoutIfNeeded()
+    
+    }
+
     func fetchUserData() {
 
-        updateUI()
+        updateprofile()
 
     }
+ 
     
-    
-    func updateUI() {
+    func updateprofile() {
         
         ActivityIndicatorManager.shared.show()
         
         if let uid = Auth.auth().currentUser?.uid {
+            
+            
+            let db = Firestore.firestore()
+            let userRef = db.collection("users").document(uid)
+
+            userRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    if let data = document.data() {
+                      
+                        let name = data["name"] as? String ?? ""
+                        let Bio = data["Bio"] as? String ?? ""
+                     
+                        self.name_LBL.text = name
+                        self.bio_Lbl.text = Bio
+
+                    }
+                } else {
+                   
+                }
+            }
+
+            
             let storageRef = Storage.storage().reference().child("profile_images").child(uid)
             storageRef.downloadURL { (url, error) in
-//
                 if let downloadURL = url {
-                    
                     self.downloadImage(url: downloadURL, IMG: self.profileImageView)
-                  //  ActivityIndicatorManager.shared.hide()
                    
                 } else {
                    
@@ -74,6 +101,7 @@ class ProfileVC: UIViewController, MKLocalSearchCompleterDelegate, UISearchBarDe
     
    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         searchCompleter.queryFragment = searchText
         
     }
@@ -105,20 +133,32 @@ class ProfileVC: UIViewController, MKLocalSearchCompleterDelegate, UISearchBarDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if self.viewModel.models.isEmpty {
+        view.endEditing(true)
+        if searchResults.isEmpty {
             
             customPresentAlert(withTitle: "Error", message: "Data not found")
             
         } else {
         
+            let selectCity = searchResults[indexPath.row].title
+          //  UserDefaults.standard.set(selectCity, forKey: "selectedCity")
+           // searchBar.text = ""
+            
+            
+          //  self.searchResults.removeAll()
+           // self.viewModel.models.removeAll()
+            
+            DispatchQueue.main.async{
+                self.viewModel.fetchWeatherByCityName(colection: self.daily_Collection)
+            }
+//            citiesTableView.reloadData()
+//            daily_Collection.reloadData()
+            
             if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController {
-                vc.selectedCity = searchResults[indexPath.row].title
-                vc.Detailsmodels = self.viewModel.models
+                vc.selectedCity = selectCity
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-    }
-            
-
+           }
             
         }
         

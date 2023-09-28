@@ -12,6 +12,10 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    @IBOutlet weak var conform_txt: UITextField!
+    @IBOutlet weak var bioTextField: UITextField!
     
     private let viewModel = SignUpViewModel()
     private let imagePicker = UIImagePickerController()
@@ -21,7 +25,19 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
         imagePicker.delegate = self
         imageView.layer.cornerRadius = imageView.frame.size.width/2
+        
+        
+        emailTextField.addBottomBorder()
+        passwordTextField.addBottomBorder()
+        conform_txt.addBottomBorder()
+        nameTextField.addBottomBorder()
+        bioTextField.addBottomBorder()
+        
+        hideKeyboardWhenTappedAround()
     }
+    
+    
+    
     
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
  
@@ -30,6 +46,8 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         ActivityIndicatorManager.shared.show()
         viewModel.email = emailTextField.text ?? ""
         viewModel.password = passwordTextField.text ?? ""
+        viewModel.username = nameTextField.text ?? ""
+        viewModel.bio = bioTextField.text ?? ""
         
         viewModel.signUp { result in
             

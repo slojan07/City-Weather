@@ -17,6 +17,11 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextField.addBottomBorder()
+        passwordTextField.addBottomBorder()
+        
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {

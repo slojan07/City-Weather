@@ -11,7 +11,7 @@ import MapKit
 
 // custom cell: collection view
 
-class DetailsViewController: UIViewController, CLLocationManagerDelegate, MKLocalSearchCompleterDelegate, UISearchBarDelegate {
+class DetailsViewController: UIViewController, CLLocationManagerDelegate, MKLocalSearchCompleterDelegate{
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cityTimeLabel: UILabel!
@@ -25,15 +25,14 @@ class DetailsViewController: UIViewController, CLLocationManagerDelegate, MKLoca
     @IBOutlet weak var mapView: MKMapView!
     
     
-    private let viewModel = searchViewModel()
+    var models = [WeatherResult]()
     
-    var Detailsmodels = [WeatherResult]()
     
     var timeZone = ""
     
     let locationManager = CLLocationManager()
     
-    var selectedCity: String?
+     var selectedCity: String?
     
     var currentLocation: CLLocation?
     
@@ -47,48 +46,43 @@ class DetailsViewController: UIViewController, CLLocationManagerDelegate, MKLoca
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getLocation(forPlaceCalled: viewModel.selectedCity) { [self] location in
+        getLocation(forPlaceCalled: selectedCity ?? "") { [self] location in
             guard let location = location else { return }
             
             self.currentLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             self.mapView.centerToLocation(self.currentLocation!)
             self.locationManager.stopUpdatingLocation()
-            updateUI()
+           
    
         }
+  
+        fetchWeatherByCityName()
+        hideKeyboardWhenTappedAround()
+     
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-  
-    
     
     func updateUI(){
+  
        
-        
-        
-        DispatchQueue.main.async{
 
-            let weatherData: [Weather] = self.Detailsmodels[0].current.weather
+            let weatherData: [Weather] = self.models[0].current.weather
             self.imageView.image = UIImage(systemName: weatherData[0].iconImage)
-            self.timeZone = self.timeZoneToRealTime(timeZone: self.Detailsmodels[0].timezone_offset)
+            self.timeZone = self.timeZoneToRealTime(timeZone: self.models[0].timezone_offset)
 
-            let dateTest = self.localDate(timeZone: self.Detailsmodels[0].timezone_offset)
+            let dateTest = self.localDate(timeZone: self.models[0].timezone_offset)
 
             self.cityTimeLabel.text = "\(dateTest)"
 
             self.cityNameLabel.text = self.selectedCity
 
-            self.currentWeatherDescriptionLabel.text = "\(self.Detailsmodels[0].current.weather[0].description)"
+            self.currentWeatherDescriptionLabel.text = "\(self.models[0].current.weather[0].description)"
 
-            let currentTemperature = self.convertToCelsius(kelvin: Float(self.Detailsmodels[0].current.temp))
+            let currentTemperature = self.convertToCelsius(kelvin: Float(self.models[0].current.temp))
 
-            let currentMinTemperature = self.convertToCelsius(kelvin: Float(self.Detailsmodels[0].daily[0].temp.min))
+            let currentMinTemperature = self.convertToCelsius(kelvin: Float(self.models[0].daily[0].temp.min))
 
-            let currentMaxTemperature = self.convertToCelsius(kelvin:Float(self.Detailsmodels[0].daily[0].temp.max))
+            let currentMaxTemperature = self.convertToCelsius(kelvin:Float(self.models[0].daily[0].temp.max))
 
             self.currentTempertureLabel.text = "\(currentTemperature)º"
 
@@ -96,17 +90,79 @@ class DetailsViewController: UIViewController, CLLocationManagerDelegate, MKLoca
 
             self.maximunTempertureLabel.text = "\(currentMaxTemperature)º"
 
-            self.currentHumidityLabel.text = "\(self.Detailsmodels[0].current.humidity)%"
+            self.currentHumidityLabel.text = "\(self.models[0].current.humidity)%"
 
-            self.currentPressureLabel.text = "\(self.Detailsmodels[0].current.pressure)"
+            self.currentPressureLabel.text = "\(self.models[0].current.pressure)"
 
-        }
+      
         
         
     }
     
     
+    func requestWeatherForLocation(selectedlocation: CLLocation) {
+        
+        let coordinate = selectedlocation.coordinate
+        //        guard let currentLocation = currentLocation else {
+        //            return
+        //        }
+        let long = coordinate.longitude
+        let lat = coordinate.latitude
+        
+        let url = "https://api.openweathermap.org/data/2.5/onecall?lat=\(lat)&lon=\(long)&appid=558b97a543fdd94ab6620fc2a0989e90"
+        
+        print(url)
+        
+        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { [self]data, response, error in
+            guard let data = data, error == nil else {
+                print("Somenthing went wrong!")
+                return
+            }
+            
+            // MARK: Convert data to models
+            var json: WeatherResult?
+            do {
+                json = try JSONDecoder().decode(WeatherResult.self, from: data)
+            }
+            catch {
+                print("Error: \(error)")
+            }
+            
+            guard let result = json else  {
+                return
+            }
+            
+            print(result)
+            
+            DispatchQueue.main.async{
+                
+                self.models.append(result)
+                
+                if !self.models.isEmpty {
+                    
+                    self.updateUI()
+                    
+                }
+                
+            }
+       
+        }).resume()
+        
+    }
     
+    func fetchWeatherByCityName() {
+        
+        if selectedCity != "" {
+            CLGeocoder().geocodeAddressString(selectedCity ?? "") { (placemarks, error) in
+                if let location = placemarks?.first?.location {
+                    
+                    self.requestWeatherForLocation(selectedlocation: location)
+                
+                
+                }
+            }
+        }
+    }
     
     
     

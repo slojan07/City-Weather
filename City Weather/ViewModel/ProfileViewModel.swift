@@ -8,13 +8,15 @@
 import Foundation
 import UIKit
 import MapKit
+import FirebaseStorage
+
 
 class searchViewModel {
     
     
     var models = [WeatherResult]()
-    var selectedCity = "kolkata"
-
+    
+    var selectedCity = UserDefaults.standard.string(forKey: "selectedCity") ?? "kolkata"
     
     func requestWeatherForLocation(selectedlocation: CLLocation, colection: UICollectionView) {
         
@@ -50,6 +52,7 @@ class searchViewModel {
             
             print(result)
             
+          
             self.models.append(result)
             
             DispatchQueue.main.async{
@@ -71,14 +74,16 @@ class searchViewModel {
                 if let location = placemarks?.first?.location {
                     
                     self.requestWeatherForLocation(selectedlocation: location, colection: colection)
-                    
-                    print(location.coordinate.latitude)
-                    print(location.coordinate.longitude)
+               
                 
                 }
             }
         }
     }
+    
+   
+  
+    
     
     
 }
